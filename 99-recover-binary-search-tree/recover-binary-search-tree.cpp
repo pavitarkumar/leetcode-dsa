@@ -11,25 +11,22 @@
  */
 class Solution {
 public:
-    vector<TreeNode*> vn;
-    void inorder(TreeNode* root){
+        TreeNode* prev = nullptr;
+        TreeNode* first = nullptr;
+        TreeNode* sec = nullptr;
+    void helper(TreeNode* root){
         if(root == NULL) return;
-        inorder(root->left);
-        vn.push_back(root);
-        inorder(root->right);
+        helper(root->left);
+        if(prev != NULL && prev->val > root->val){
+            if(first == NULL) first = prev;
+            sec = root;
+        }
+        prev = root;
+        helper(root->right);
     }
     void recoverTree(TreeNode* root) {
-        inorder(root);
-        TreeNode* first = NULL;
-        TreeNode* sec = NULL;
-        for(int i = 0;i < vn.size()-1;i++){
-            if(vn[i]->val > vn[i+1]->val){
-                if(first == NULL){
-                    first = vn[i];
-                }
-                sec = vn[i+1];
-            } 
-        }
+        helper(root);
         swap(first->val,sec->val);
+        return;
     }
 };
