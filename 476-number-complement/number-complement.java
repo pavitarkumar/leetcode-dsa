@@ -8,7 +8,7 @@ class Solution {
             n>>=1;
         }
         int mask = 0;
-        while(ans > 0){
+        while(ans-1 > 0){
             ans--;
             mask <<= 1;
             mask |= 1;
