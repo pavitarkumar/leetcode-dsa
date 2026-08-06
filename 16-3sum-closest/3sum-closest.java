@@ -13,7 +13,8 @@ class Solution {
                 if(Math.abs(target - summ) < Math.abs(closestsum - target)){
                     closestsum = summ;
                 }
-                if(summ < target) s++;
+                if(summ == target) return target;
+                else if(summ < target) s++;
                 else e--;
             }
         }
