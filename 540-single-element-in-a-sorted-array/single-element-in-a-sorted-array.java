@@ -1,12 +1,18 @@
 class Solution {
     public int singleNonDuplicate(int[] nums) {
-        int n = nums.length;
-        if(n == 1) return nums[0]; 
-        if(nums[n-1] != nums[n-2]) return nums[n-1];
-        for(int i = 0;i < n;i+=2){
-            if(nums[i] != nums[i+1]) return nums[i];
-            if(i == n) return nums[n];
+        int low = 0;
+        int high = nums.length - 1;
+        while(low < high){
+            int mid = low + (high - low) /2;
+            if(mid%2 == 1){
+                mid--;
+            }
+            if(nums[mid] == nums[mid + 1]){
+                low = mid + 2;
+            }else{
+                high = mid;
+            }
         }
-        return 0;
+        return nums[low];
     }
 }
