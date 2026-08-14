@@ -7,7 +7,7 @@ var filter = function(arr, fn) {
     let size = 0;
     let ans = [];
     for(let i = 0; i < arr.length ;i++){
-        if(fn(arr[i],i)) ans[size++] = arr[i];
+        if(fn(arr[i],i)) ans.push(arr[i]);
     }
     return ans;
 };
