@@ -5,9 +5,9 @@
  * @return {number[]}
  */
 var map = function(arr, fn) {
-    let ans = [];
+    const ans = new Array(arr.length);
     for(let i = 0;i < arr.length;i++){
-        ans.push(fn(arr[i],i)); 
+        ans[i] = fn(arr[i],i); 
     }
     return ans;
 };
