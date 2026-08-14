@@ -1,22 +1,26 @@
+class Counter {
+    constructor(init){
+    this.init = init;
+    this.current = init;
+    }
+    increment(){
+        return ++this.current;
+    }
+    decrement(){
+        return --this.current;
+    }
+    reset(){
+        this.current = this.init;
+        return this.init;
+    }
+}
+
 /**
  * @param {integer} init
  * @return { increment: Function, decrement: Function, reset: Function }
  */
 var createCounter = function(init) {
-    let i = init;
-    let a = init;
-    return {
-        increment: function(){
-            return ++i;
-        },
-        decrement: function(){
-            return --i;
-        },
-        reset: function(init){
-            i = a;
-            return a;
-        }
-    }
+    return new Counter(init);
 };
 
 /**
