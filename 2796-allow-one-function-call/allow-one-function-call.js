@@ -3,7 +3,6 @@
  * @return {Function}
  */
 var once = function(fn) {
-    let ans;
     let check = false;
     return function(...args){
         if(!check){
