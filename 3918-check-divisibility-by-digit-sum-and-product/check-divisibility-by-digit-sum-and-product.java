@@ -4,9 +4,8 @@ class Solution {
         int sum = 0;
         int product = 1;
         while(n > 0){
-            int a = n%10;
-            product *= a;
-            sum += a;
+            product *= n%10;
+            sum += n%10;
             n /= 10;
         }
         sum += product;
