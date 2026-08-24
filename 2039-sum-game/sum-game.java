@@ -1,22 +1,23 @@
 class Solution {
     public boolean sumGame(String num) {
-        int n = num.length();
-        int leftSum = 0 , rightSum = 0;
-        int leftQ = 0 , rightQ = 0;
-        for(int i = 0;i < n/2;i++){
-            if(num.charAt(i) != '?'){
-                leftSum += num.charAt(i) - '0';
+        int st = 0;
+        int end = num.length() - 1;
+        int Sum = 0;
+        int Q = 0;
+        while(st < end){
+            if(num.charAt(st) != '?'){
+                Sum += num.charAt(st) - '0';
             }else{
-                leftQ++;
+                Q--;
             }
-        }
-        for(int i = n/2;i < n;i++){
-            if(num.charAt(i) != '?'){
-                rightSum += num.charAt(i) - '0';
+            if(num.charAt(end) != '?'){
+                Sum -= num.charAt(end) - '0';
             }else{
-                rightQ++;
+                Q++;
             }
+            st++;
+            end--;
         }
-        return (leftSum - rightSum) * 2 != (rightQ - leftQ) * 9;
+        return (Sum) * 2 != (Q) * 9;
     }
 }
