@@ -1,34 +1,34 @@
 import java.util.Arrays;
-
 class Solution {
-
     public void wiggleSort(int[] nums) {
-
-        Arrays.sort(nums);
-
         int n = nums.length;
-        int[] arr = new int[n];
-
-        int low = (n - 1) / 2;  // end of first half
-        int high = n - 1;       // end of second half
-
+        int arr[] = nums.clone();
+        Arrays.sort(arr);
+        int median = arr[n/2];
+        int left = 0;
         int i = 0;
-
-        while (i < n) {
-
-            arr[i] = nums[low];
-            low--;
-            i++;
-
-            if (i < n) {
-                arr[i] = nums[high];
-                high--;
+        int right = n-1;
+        while(i <= right){
+            int idx = (i*2+1)%(n|1);
+            if(nums[idx] > median){
+                int leftidx = (left*2+1)%(n|1);
+                swap(nums,leftidx,idx);
+                i++;
+                left++;
+            }else if(nums[idx] < median){
+                int rightidx = (right*2+1)%(n|1);
+                swap(nums,rightidx,idx);
+                right--;
+            }else{
                 i++;
             }
         }
 
-        for (int j = 0; j < n; j++) {
-            nums[j] = arr[j];
-        }
+
+    }
+    public void swap(int nums[],int i,int j){
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
 }
