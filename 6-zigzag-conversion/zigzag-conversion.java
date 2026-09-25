@@ -1,33 +1,22 @@
 class Solution {
     public String convert(String s, int numRows) {
-
-        if (numRows == 1 || numRows >= s.length()) {
-            return s;
-        }
-
+        if(numRows == 1 || numRows > s.length()) return s;
+        int jump = (numRows - 1)*2;
         StringBuilder ans = new StringBuilder();
 
-        int cycle = 2 * (numRows - 1);
+        for(int row = 0;row < numRows ;row++){
 
-        for (int row = 0; row < numRows; row++) {
+            for(int i = row;i < s.length();i+=jump){
+                
+                ans.append(s.charAt(i));
 
-            for (int j = row; j < s.length(); j += cycle) {
+                int d = i + jump - row*2;
 
-                // Vertical character
-                ans.append(s.charAt(j));
-
-                // Diagonal character for middle rows
-                int diagonal = j + cycle - 2 * row;
-
-                if (row != 0 &&
-                    row != numRows - 1 &&
-                    diagonal < s.length()) {
-
-                    ans.append(s.charAt(diagonal));
+                if(row != 0 && row != numRows - 1 && d < s.length()){
+                    ans.append(s.charAt(d));
                 }
             }
         }
-
         return ans.toString();
     }
 }
