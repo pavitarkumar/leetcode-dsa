@@ -1,30 +1,28 @@
 class Solution {
-
     public int minInsertions(String s) {
         int insertions = 0;
         int leftCount = 0;
-        int length = s.length();
+        int l = s.length();
         int index = 0;
-        while (index < length) {
-            char c = s.charAt(index);
-            if (c == '(') {
-                leftCount++;
+        while(index < l){
+            if(s.charAt(index) == '('){
+                leftCount+=1;
                 index++;
-            } else {
-                if (leftCount > 0) {
+            }else{
+                if(leftCount > 0){
                     leftCount--;
-                } else {
+                }else{
                     insertions++;
                 }
-                if (index < length - 1 && s.charAt(index + 1) == ')') {
-                    index += 2;
-                } else {
-                    insertions++;
-                    index++;
-                }
+                if(index < l-1 && s.charAt(index+1) == ')'){
+                index+=2;
+            }else{
+                insertions++;
+                index++;
+            }
             }
         }
-        insertions += leftCount * 2;
+        insertions+=leftCount*2;
         return insertions;
     }
 }
