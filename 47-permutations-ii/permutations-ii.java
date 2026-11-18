@@ -5,7 +5,7 @@ class Solution {
             return;
         }
         for(int i = 0;i < nums.length;i++){
-            if (i > 0 && nums[i] == nums[i - 1] && arr[i - 1]==true) continue;
+            if (i > 0 && nums[i] == nums[i - 1] && !arr[i - 1]) continue;
             if(arr[i]) continue;
             arr[i] = true;
             ans.add(nums[i]);
